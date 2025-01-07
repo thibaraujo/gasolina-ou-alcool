@@ -15,6 +15,10 @@ double convertToDouble(String value) {
   return double.parse(value.replaceAll(',', '.'));
 }
 
+void limparCampos(TextEditingController controller) {
+  controller.text = '';
+}
+
 String calculo(String gasolina, String alcool) {
   double precoGasolina = convertToDouble(gasolina);
   double precoAlcool = convertToDouble(alcool);
@@ -103,6 +107,8 @@ class _CampoTextoState extends State<CampoTexto> {
                             FocusScope.of(context).unfocus(),
                             setState(() {
                               _resultado = calculo(_controllerGasolina.text, _controllerAlcool.text);
+                              limparCampos(_controllerAlcool);
+                              limparCampos(_controllerGasolina);
                             })
                           },
                           icon: const Icon(
